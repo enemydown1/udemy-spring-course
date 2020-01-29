@@ -1,7 +1,9 @@
 package com.udemy.spring.course;
 
 import com.udemy.spring.course.domain.Categoria;
+import com.udemy.spring.course.domain.Produto;
 import com.udemy.spring.course.repositories.CategoriaRepository;
+import com.udemy.spring.course.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,16 +17,31 @@ public class Application implements CommandLineRunner {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Categoria cat1 = new Categoria(null, "Informática");
-        Categoria cat2 = new Categoria(null, "Escritório");
+        Categoria categoria1 = new Categoria(null, "Informática");
+        Categoria categoria2 = new Categoria(null, "Escritório");
 
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        Produto produto1 = new Produto(null, "Computador", 2000.00);
+        Produto produto2 = new Produto(null, "Impressora", 800.00);
+        Produto produto3 = new Produto(null, "Mouse", 80.00);
+
+        categoria1.getProdutos().addAll(Arrays.asList(produto1,produto2,produto3));
+        categoria2.getProdutos().addAll(Arrays.asList(produto2));
+
+        produto1.getCategorias().addAll(Arrays.asList(categoria1));
+        produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
+        produto3.getCategorias().addAll(Arrays.asList(categoria1));
+
+        categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
+        produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 
     }
 }
