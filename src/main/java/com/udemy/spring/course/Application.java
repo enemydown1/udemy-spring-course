@@ -58,11 +58,11 @@ public class Application implements CommandLineRunner {
         Produto produto3 = new Produto(null, "Mouse", 80.00);
 
         categoria1.getProdutos().addAll(Arrays.asList(produto1,produto2,produto3));
-        categoria2.getProdutos().addAll(Arrays.asList(produto2));
+        categoria2.getProdutos().addAll(Collections.singletonList(produto2));
 
-        produto1.getCategorias().addAll(Arrays.asList(categoria1));
+        produto1.getCategorias().addAll(Collections.singletonList(categoria1));
         produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
-        produto3.getCategorias().addAll(Arrays.asList(categoria1));
+        produto3.getCategorias().addAll(Collections.singletonList(categoria1));
 
         categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
         produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
@@ -74,7 +74,7 @@ public class Application implements CommandLineRunner {
         Cidade cidade2 = new Cidade(null, "São Paulo", estado2);
         Cidade cidade3 = new Cidade(null, "Campinas", estado2);
 
-        estado1.getCidades().addAll(Arrays.asList(cidade1));
+        estado1.getCidades().addAll(Collections.singletonList(cidade1));
         estado2.getCidades().addAll(Arrays.asList(cidade2, cidade3));
 
         estadoRepository.saveAll(Arrays.asList(estado1, estado2));
@@ -88,7 +88,7 @@ public class Application implements CommandLineRunner {
 
         cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 
-        clienteRepository.saveAll(Arrays.asList(cliente1));
+        clienteRepository.saveAll(Collections.singletonList(cliente1));
         enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
