@@ -95,10 +95,10 @@ public class Application implements CommandLineRunner {
         Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), customer1, endereco1);
         Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), customer1, endereco2);
 
-        Pagamento pagamento1 = new PagamentoComCartao(null, PaymentState.SETTLED, pedido1, 6);
+        Pagamento pagamento1 = new CardPayment(null, PaymentState.SETTLED, pedido1, 6);
         pedido1.setPagamento(pagamento1);
 
-        Pagamento pagamento2 = new PagamentoComBoleto(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
+        Pagamento pagamento2 = new BilletPayment(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
         pedido2.setPagamento(pagamento2);
 
         customer1.getOrders().addAll(Arrays.asList(pedido1, pedido2));
