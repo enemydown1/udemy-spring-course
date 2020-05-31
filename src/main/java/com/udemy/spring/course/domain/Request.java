@@ -17,7 +17,7 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @JsonFormat(pattern = "MM/dd/yyyy HH:mm")
     private Date createdAt;
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy= "request")

@@ -15,11 +15,12 @@ public class CustomerService {
     @Autowired
     private ResourceRepository repository;
 
-    public Customer buscar(Integer id){
+    public Customer find(Integer id){
         Optional<Customer> obj = repository.findById(id);
 
-        return obj.orElseThrow(() -> new ObjectNotFoundException((
-                "Object not found! Id: " + id + " Type: " + Request.class.getName())));
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                String.format("Object not found with id {%s} of type %s", id, Customer.class.getName())
+        ));
     }
 
 }

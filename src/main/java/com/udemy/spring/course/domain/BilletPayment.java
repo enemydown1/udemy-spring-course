@@ -10,9 +10,9 @@ import java.util.Date;
 public class BilletPayment extends Payment {
     private static final long serialVersionUID = 1L;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "MM/dd/yyyy")
     private Date dueDate;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "MM/dd/yyyy")
     private Date payday;
 
     public BilletPayment(){

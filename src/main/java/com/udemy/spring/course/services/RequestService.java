@@ -17,9 +17,9 @@ public class RequestService {
     public Request find(Integer id){
         Optional<Request> obj = repository.findById(id);
 
-        return obj.orElseThrow(() -> new ObjectNotFoundException((
-                "Object not found! Id: " + id + " Type: " + Request.class.getName()
-                )));
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                String.format("Object not found with id {%s} of type %s", id, Request.class.getName())
+        ));
     }
 
 }
