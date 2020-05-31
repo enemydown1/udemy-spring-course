@@ -14,22 +14,22 @@ public abstract class Payment implements Serializable {
 
     @Id
     private Integer id;
-    private Integer estado;
+    private Integer state;
 
     @JsonIgnore
     @OneToOne
     @JoinColumn(name="pedido_id")
     @MapsId
-    private Pedido pedido;
+    private Pedido order;
 
     public Payment(){
 
     }
 
-    public Payment(Integer id, PaymentState estado, Pedido pedido) {
+    public Payment(Integer id, PaymentState state, Pedido order) {
         this.id = id;
-        this.estado = estado.getCode();
-        this.pedido = pedido;
+        this.state = state.getCode();
+        this.order = order;
     }
 
     public Integer getId() {
@@ -53,19 +53,19 @@ public abstract class Payment implements Serializable {
         this.id = id;
     }
 
-    public PaymentState getEstado() {
-        return PaymentState.toEnum(estado);
+    public PaymentState getState() {
+        return PaymentState.toEnum(state);
     }
 
-    public void setEstado(PaymentState estado) {
-        this.estado = estado.getCode();
+    public void setState(PaymentState state) {
+        this.state = state.getCode();
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public Pedido getOrder() {
+        return order;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setOrder(Pedido order) {
+        this.order = order;
     }
 }

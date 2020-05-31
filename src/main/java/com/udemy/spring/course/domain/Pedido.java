@@ -20,7 +20,7 @@ public class Pedido implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
+    @OneToOne(cascade=CascadeType.ALL, mappedBy= "order")
     private Payment payment;
 
     @ManyToOne
@@ -32,7 +32,7 @@ public class Pedido implements Serializable {
     private Address addressDeEntrega;
 
     @OneToMany(mappedBy="id.pedido")
-    private Set<ItemPedido> itens = new HashSet<>();
+    private Set<OrderItem> itens = new HashSet<>();
 
     public Pedido(){
 
@@ -98,11 +98,11 @@ public class Pedido implements Serializable {
         this.addressDeEntrega = addressDeEntrega;
     }
 
-    public Set<ItemPedido> getItens() {
+    public Set<OrderItem> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItemPedido> itens) {
+    public void setItens(Set<OrderItem> itens) {
         this.itens = itens;
     }
 }

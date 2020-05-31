@@ -33,7 +33,7 @@ public class ItemPedidoPK implements Serializable {
         return Objects.hash(pedido, product);
     }
 
-    public Pedido getPedido() {
+    public Pedido getOrder() {
         return pedido;
     }
 

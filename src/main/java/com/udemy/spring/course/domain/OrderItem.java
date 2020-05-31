@@ -8,18 +8,18 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class ItemPedido implements Serializable {
+public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
-    private Double desconto;
-    private Integer quantidade;
-    private Double preco;
+    private Double discount;
+    private Integer quantity;
+    private Double price;
 
-    public ItemPedido(){
+    public OrderItem(){
 
     }
 
@@ -31,35 +31,35 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
-    public Double getDesconto() {
-        return desconto;
+    public Double getDiscount() {
+        return discount;
     }
 
-    public void setDesconto(Double desconto) {
-        this.desconto = desconto;
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemPedido that = (ItemPedido) o;
+        OrderItem that = (OrderItem) o;
         return Objects.equals(id, that.id);
     }
 
@@ -68,20 +68,20 @@ public class ItemPedido implements Serializable {
         return Objects.hash(id);
     }
 
-    public ItemPedido(Pedido pedido, Product product, Double desconto, Integer quantidade, Double preco) {
-        id.setPedido(pedido);
+    public OrderItem(Pedido order, Product product, Double discount, Integer quantity, Double price) {
+        id.setPedido(order);
         id.setProduct(product);
-        this.desconto = desconto;
-        this.quantidade = quantidade;
-        this.preco = preco;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     @JsonIgnore
     public Pedido getOrder(){
-        return id.getPedido();
+        return id.getOrder();
     }
 
-    public Product getProduto(){
+    public Product getProduct(){
         return id.getProduct();
     }
 }

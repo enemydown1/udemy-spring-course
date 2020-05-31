@@ -25,7 +25,7 @@ public class Product {
 
     @JsonIgnore
     @OneToMany(mappedBy = "id.product")
-    private Set<ItemPedido> itens = new HashSet<>();
+    private Set<OrderItem> itens = new HashSet<>();
 
     public Product(){
 
@@ -41,7 +41,7 @@ public class Product {
     @JsonIgnore
     public List<Pedido> getOrders() {
         List<Pedido> list = new ArrayList<>();
-        for(ItemPedido item: itens){
+        for(OrderItem item: itens){
             list.add(item.getOrder());
         }
         return list;
@@ -79,11 +79,11 @@ public class Product {
         this.categories = categories;
     }
 
-    public Set<ItemPedido> getItens() {
+    public Set<OrderItem> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItemPedido> itens) {
+    public void setItens(Set<OrderItem> itens) {
         this.itens = itens;
     }
 

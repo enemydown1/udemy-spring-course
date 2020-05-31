@@ -106,18 +106,18 @@ public class Application implements CommandLineRunner {
         orderRepository.saveAll(Arrays.asList(pedido1, pedido2));
         paymentRepository.saveAll(Arrays.asList(payment1, payment2));
 
-        ItemPedido itemPedido1 = new ItemPedido(pedido1, product1, 0.00, 1, 2000.00);
-        ItemPedido itemPedido2 = new ItemPedido(pedido1, product3, 0.00, 2, 80.00);
-        ItemPedido itemPedido3 = new ItemPedido(pedido2, product2, 100.00, 1, 800.00);
+        OrderItem orderItem1 = new OrderItem(pedido1, product1, 0.00, 1, 2000.00);
+        OrderItem orderItem2 = new OrderItem(pedido1, product3, 0.00, 2, 80.00);
+        OrderItem orderItem3 = new OrderItem(pedido2, product2, 100.00, 1, 800.00);
 
-        pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
-        pedido2.getItens().addAll(Collections.singletonList(itemPedido3));
+        pedido1.getItens().addAll(Arrays.asList(orderItem1, orderItem2));
+        pedido2.getItens().addAll(Collections.singletonList(orderItem3));
 
-        product1.getItens().addAll(Collections.singletonList(itemPedido1));
-        product2.getItens().addAll(Collections.singletonList(itemPedido3));
-        product3.getItens().addAll(Collections.singletonList(itemPedido2));
+        product1.getItens().addAll(Collections.singletonList(orderItem1));
+        product2.getItens().addAll(Collections.singletonList(orderItem3));
+        product3.getItens().addAll(Collections.singletonList(orderItem2));
 
-        orderItemRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3));
 
     }
 }
