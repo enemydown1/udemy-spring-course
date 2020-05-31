@@ -12,11 +12,11 @@ public class OrderItemPK implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name="pedido_id")
+    @JoinColumn(name="order_id")
     private Pedido order;
 
     @ManyToOne
-    @JoinColumn(name="produto_id")
+    @JoinColumn(name="product_id")
     private Product product;
 
     @Override

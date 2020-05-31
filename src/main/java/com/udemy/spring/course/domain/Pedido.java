@@ -24,12 +24,12 @@ public class Pedido implements Serializable {
     private Payment payment;
 
     @ManyToOne
-    @JoinColumn(name="cliente_id")
+    @JoinColumn(name="customer_id")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name="endereco_de_entrega_id")
-    private Address addressDeEntrega;
+    @JoinColumn(name="delivery_address_id")
+    private Address deliveryAddress;
 
     @OneToMany(mappedBy= "id.order")
     private Set<OrderItem> itens = new HashSet<>();
@@ -38,11 +38,11 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Integer id, Date instante, Customer customer, Address addressDeEntrega) {
+    public Pedido(Integer id, Date instante, Customer customer, Address deliveryAddress) {
         this.id = id;
         this.instante = instante;
         this.customer = customer;
-        this.addressDeEntrega = addressDeEntrega;
+        this.deliveryAddress = deliveryAddress;
     }
 
     @Override
@@ -90,12 +90,12 @@ public class Pedido implements Serializable {
         this.customer = customer;
     }
 
-    public Address getAddressDeEntrega() {
-        return addressDeEntrega;
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setAddressDeEntrega(Address addressDeEntrega) {
-        this.addressDeEntrega = addressDeEntrega;
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
     public Set<OrderItem> getItens() {

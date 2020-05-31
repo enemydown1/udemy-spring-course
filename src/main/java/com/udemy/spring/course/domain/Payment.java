@@ -18,12 +18,11 @@ public abstract class Payment implements Serializable {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name="pedido_id")
+    @JoinColumn(name="order_id")
     @MapsId
     private Pedido order;
 
     public Payment(){
-
     }
 
     public Payment(Integer id, PaymentState state, Pedido order) {
