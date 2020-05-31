@@ -13,7 +13,7 @@ public class OrderItem implements Serializable {
 
     @JsonIgnore
     @EmbeddedId
-    private ItemPedidoPK id = new ItemPedidoPK();
+    private OrderItemPK id = new OrderItemPK();
 
     private Double discount;
     private Integer quantity;
@@ -23,11 +23,11 @@ public class OrderItem implements Serializable {
 
     }
 
-    public ItemPedidoPK getId() {
+    public OrderItemPK getId() {
         return id;
     }
 
-    public void setId(ItemPedidoPK id) {
+    public void setId(OrderItemPK id) {
         this.id = id;
     }
 
@@ -69,7 +69,7 @@ public class OrderItem implements Serializable {
     }
 
     public OrderItem(Pedido order, Product product, Double discount, Integer quantity, Double price) {
-        id.setPedido(order);
+        id.setOrder(order);
         id.setProduct(product);
         this.discount = discount;
         this.quantity = quantity;

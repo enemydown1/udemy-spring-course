@@ -31,7 +31,7 @@ public class Pedido implements Serializable {
     @JoinColumn(name="endereco_de_entrega_id")
     private Address addressDeEntrega;
 
-    @OneToMany(mappedBy="id.pedido")
+    @OneToMany(mappedBy= "id.order")
     private Set<OrderItem> itens = new HashSet<>();
 
     public Pedido(){

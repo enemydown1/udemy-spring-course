@@ -7,13 +7,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class ItemPedidoPK implements Serializable {
+public class OrderItemPK implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
     @JoinColumn(name="pedido_id")
-    private Pedido pedido;
+    private Pedido order;
 
     @ManyToOne
     @JoinColumn(name="produto_id")
@@ -23,22 +23,22 @@ public class ItemPedidoPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemPedidoPK that = (ItemPedidoPK) o;
-        return Objects.equals(pedido, that.pedido) &&
+        OrderItemPK that = (OrderItemPK) o;
+        return Objects.equals(order, that.order) &&
                 Objects.equals(product, that.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pedido, product);
+        return Objects.hash(order, product);
     }
 
     public Pedido getOrder() {
-        return pedido;
+        return order;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setOrder(Pedido order) {
+        this.order = order;
     }
 
     public Product getProduct() {
