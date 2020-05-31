@@ -5,28 +5,28 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Cidade implements Serializable {
+public class City implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private String name;
 
     @ManyToOne
-    @JoinColumn(name="estado_id")
-    private Estado estado;
+    @JoinColumn(name="state_id")
+    private State state;
 
-    public Estado getEstado() {
-        return estado;
+    public State getState() {
+        return state;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cidade cidade = (Cidade) o;
-        return Objects.equals(id, cidade.id);
+        City city = (City) o;
+        return Objects.equals(id, city.id);
     }
 
     @Override
@@ -34,18 +34,17 @@ public class Cidade implements Serializable {
         return Objects.hash(id);
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setState(State state) {
+        this.state = state;
     }
 
-    public Cidade(Integer id, String nome, Estado estado) {
+    public City(Integer id, String name, State state) {
         this.id = id;
-        this.nome = nome;
-        this.estado = estado;
+        this.name = name;
+        this.state = state;
     }
 
-    public Cidade(){
-
+    public City(){
     }
 
     public Integer getId() {
@@ -56,11 +55,11 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 }

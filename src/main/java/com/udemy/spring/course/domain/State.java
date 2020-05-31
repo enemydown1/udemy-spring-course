@@ -9,33 +9,33 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Estado implements Serializable {
+public class State implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "estado")
-    private List<Cidade> cidades = new ArrayList<>();
+    @OneToMany(mappedBy = "state")
+    private List<City> cities = new ArrayList<>();
 
-    public Estado(){
+    public State(){
 
     }
 
-    public Estado(Integer id, String nome) {
+    public State(Integer id, String name) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Estado estado = (Estado) o;
-        return Objects.equals(id, estado.id);
+        State state = (State) o;
+        return Objects.equals(id, state.id);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class Estado implements Serializable {
         return Objects.hash(id);
     }
 
-    public List<Cidade> getCidades() {
-        return cidades;
+    public List<City> getCities() {
+        return cities;
     }
 
-    public void setCidades(List<Cidade> cidades) {
-        this.cidades = cidades;
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 
     public Integer getId() {
@@ -59,11 +59,11 @@ public class Estado implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 }

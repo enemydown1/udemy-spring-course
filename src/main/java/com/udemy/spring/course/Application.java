@@ -66,24 +66,24 @@ public class Application implements CommandLineRunner {
         categoryRepository.saveAll(Arrays.asList(category1, category2));
         productRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 
-        Estado estado1 = new Estado(null, "Minas Gerais");
-        Estado estado2 = new Estado(null, "São Paulo");
+        State state1 = new State(null, "Minas Gerais");
+        State state2 = new State(null, "São Paulo");
 
-        Cidade cidade1 = new Cidade(null, "Uberlândia", estado1);
-        Cidade cidade2 = new Cidade(null, "São Paulo", estado2);
-        Cidade cidade3 = new Cidade(null, "Campinas", estado2);
+        City city1 = new City(null, "Uberlândia", state1);
+        City city2 = new City(null, "São Paulo", state2);
+        City city3 = new City(null, "Campinas", state2);
 
-        estado1.getCidades().addAll(Collections.singletonList(cidade1));
-        estado2.getCidades().addAll(Arrays.asList(cidade2, cidade3));
+        state1.getCities().addAll(Collections.singletonList(city1));
+        state2.getCities().addAll(Arrays.asList(city2, city3));
 
-        stateRepository.saveAll(Arrays.asList(estado1, estado2));
-        cityRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+        stateRepository.saveAll(Arrays.asList(state1, state2));
+        cityRepository.saveAll(Arrays.asList(city1, city2, city3));
 
         Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "12629141675", CustomerType.PHYSICAL_PERSON);
         cliente1.getTelefones().addAll(Arrays.asList("38148199", "998068391"));
 
-        Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", cliente1, cidade1);
-        Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", cliente1, cidade2);
+        Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", cliente1, city1);
+        Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", cliente1, city2);
 
         cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 
