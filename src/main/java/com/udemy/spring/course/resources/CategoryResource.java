@@ -1,7 +1,7 @@
 package com.udemy.spring.course.resources;
 
 import com.udemy.spring.course.domain.Categoria;
-import com.udemy.spring.course.services.CategoriaService;
+import com.udemy.spring.course.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value="/categorias")
-public class CategoriaResource {
+public class CategoryResource {
 
     @Autowired
-    private CategoriaService service;
+    private CategoryService service;
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id){

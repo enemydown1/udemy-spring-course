@@ -17,31 +17,31 @@ import java.util.Collections;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    private EstadoRepository estadoRepository;
+    private StateRepository stateRepository;
 
     @Autowired
-    private CidadeRepository cidadeRepository;
+    private CityRepository cityRepository;
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ResourceRepository resourceRepository;
 
     @Autowired
-    private EnderecoRepository enderecoRepository;
+    private AddressRepository addressRepository;
 
     @Autowired
-    private PedidoRepository pedidoRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
-    private PagamentoRepository pagamentoRepository;
+    private PaymentRepository paymentRepository;
 
     @Autowired
-    private ItemPedidoRepository itemPedidoRepository;
+    private OrderItemRepository orderItemRepository;
 
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);
@@ -63,8 +63,8 @@ public class Application implements CommandLineRunner {
         produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
         produto3.getCategorias().addAll(Collections.singletonList(categoria1));
 
-        categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
-        produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
+        categoryRepository.saveAll(Arrays.asList(categoria1, categoria2));
+        productRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 
         Estado estado1 = new Estado(null, "Minas Gerais");
         Estado estado2 = new Estado(null, "São Paulo");
@@ -76,8 +76,8 @@ public class Application implements CommandLineRunner {
         estado1.getCidades().addAll(Collections.singletonList(cidade1));
         estado2.getCidades().addAll(Arrays.asList(cidade2, cidade3));
 
-        estadoRepository.saveAll(Arrays.asList(estado1, estado2));
-        cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+        stateRepository.saveAll(Arrays.asList(estado1, estado2));
+        cityRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 
         Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "12629141675", TipoCliente.PESSOA_FISICA);
         cliente1.getTelefones().addAll(Arrays.asList("38148199", "998068391"));
@@ -87,8 +87,8 @@ public class Application implements CommandLineRunner {
 
         cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 
-        clienteRepository.saveAll(Collections.singletonList(cliente1));
-        enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
+        resourceRepository.saveAll(Collections.singletonList(cliente1));
+        addressRepository.saveAll(Arrays.asList(endereco1, endereco2));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -103,8 +103,8 @@ public class Application implements CommandLineRunner {
 
         cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 
-        pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
-        pagamentoRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
+        orderRepository.saveAll(Arrays.asList(pedido1, pedido2));
+        paymentRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
 
         ItemPedido itemPedido1 = new ItemPedido(pedido1, produto1, 0.00, 1, 2000.00);
         ItemPedido itemPedido2 = new ItemPedido(pedido1, produto3, 0.00, 2, 80.00);
@@ -117,7 +117,7 @@ public class Application implements CommandLineRunner {
         produto2.getItens().addAll(Collections.singletonList(itemPedido3));
         produto3.getItens().addAll(Collections.singletonList(itemPedido2));
 
-        itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
+        orderItemRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 
     }
 }

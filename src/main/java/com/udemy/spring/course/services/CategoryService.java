@@ -1,7 +1,7 @@
 package com.udemy.spring.course.services;
 
 import com.udemy.spring.course.domain.Categoria;
-import com.udemy.spring.course.repositories.CategoriaRepository;
+import com.udemy.spring.course.repositories.CategoryRepository;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CategoriaService {
+public class CategoryService {
 
     @Autowired
-    private CategoriaRepository repository;
+    private CategoryRepository repository;
 
     public Categoria buscar(Integer id){
         Optional<Categoria> obj = repository.findById(id);

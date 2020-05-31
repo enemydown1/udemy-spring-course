@@ -1,1 +1,0 @@
-Esse é um arquivo para verificar o versionamento do Git.
