@@ -14,7 +14,7 @@ public class Category implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    private List<Produto> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public Category(){
 
@@ -55,11 +55,11 @@ public class Category implements Serializable {
         return Objects.hash(id);
     }
 
-    public List<Produto> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Produto> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }

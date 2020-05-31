@@ -68,20 +68,20 @@ public class ItemPedido implements Serializable {
         return Objects.hash(id);
     }
 
-    public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
+    public ItemPedido(Pedido pedido, Product product, Double desconto, Integer quantidade, Double preco) {
         id.setPedido(pedido);
-        id.setProduto(produto);
+        id.setProduct(product);
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
     }
 
     @JsonIgnore
-    public Pedido getPedido(){
+    public Pedido getOrder(){
         return id.getPedido();
     }
 
-    public Produto getProduto(){
-        return id.getProduto();
+    public Product getProduto(){
+        return id.getProduct();
     }
 }

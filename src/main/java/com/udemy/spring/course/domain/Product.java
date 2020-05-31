@@ -6,45 +6,45 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Produto {
+public class Product {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
-    private Double preco;
+    private String name;
+    private Double price;
 
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name="produto_categoria",
-            joinColumns = @JoinColumn(name="produto_id"),
-            inverseJoinColumns = @JoinColumn(name="categoria_id")
+            name="category_product",
+            joinColumns = @JoinColumn(name="product_id"),
+            inverseJoinColumns = @JoinColumn(name="category_id")
     )
     private List<Category> categories = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id.produto")
+    @OneToMany(mappedBy = "id.product")
     private Set<ItemPedido> itens = new HashSet<>();
 
-    public Produto(){
+    public Product(){
 
     }
 
-    public Produto(Integer id, String nome, Double preco) {
+    public Product(Integer id, String name, Double price) {
         super();
         this.id = id;
-        this.nome = nome;
-        this.preco = preco;
+        this.name = name;
+        this.price = price;
     }
 
     @JsonIgnore
-    public List<Pedido> getPedidos() {
-        List<Pedido> lista = new ArrayList<>();
+    public List<Pedido> getOrders() {
+        List<Pedido> list = new ArrayList<>();
         for(ItemPedido item: itens){
-            lista.add(item.getPedido());
+            list.add(item.getOrder());
         }
-        return lista;
+        return list;
     }
 
     public Integer getId() {
@@ -55,20 +55,20 @@ public class Produto {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public List<Category> getCategories() {
@@ -91,8 +91,8 @@ public class Produto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Produto produto = (Produto) o;
-        return id.equals(produto.id);
+        Product product = (Product) o;
+        return id.equals(product.id);
     }
 
     @Override

@@ -52,19 +52,19 @@ public class Application implements CommandLineRunner {
         Category category1 = new Category(null, "Informática");
         Category category2 = new Category(null, "Escritório");
 
-        Produto produto1 = new Produto(null, "Computador", 2000.00);
-        Produto produto2 = new Produto(null, "Impressora", 800.00);
-        Produto produto3 = new Produto(null, "Mouse", 80.00);
+        Product product1 = new Product(null, "Computador", 2000.00);
+        Product product2 = new Product(null, "Impressora", 800.00);
+        Product product3 = new Product(null, "Mouse", 80.00);
 
-        category1.getProducts().addAll(Arrays.asList(produto1,produto2,produto3));
-        category2.getProducts().addAll(Collections.singletonList(produto2));
+        category1.getProducts().addAll(Arrays.asList(product1, product2, product3));
+        category2.getProducts().addAll(Collections.singletonList(product2));
 
-        produto1.getCategories().addAll(Collections.singletonList(category1));
-        produto2.getCategories().addAll(Arrays.asList(category1, category2));
-        produto3.getCategories().addAll(Collections.singletonList(category1));
+        product1.getCategories().addAll(Collections.singletonList(category1));
+        product2.getCategories().addAll(Arrays.asList(category1, category2));
+        product3.getCategories().addAll(Collections.singletonList(category1));
 
         categoryRepository.saveAll(Arrays.asList(category1, category2));
-        productRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3));
 
         State state1 = new State(null, "Minas Gerais");
         State state2 = new State(null, "São Paulo");
@@ -106,16 +106,16 @@ public class Application implements CommandLineRunner {
         orderRepository.saveAll(Arrays.asList(pedido1, pedido2));
         paymentRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
 
-        ItemPedido itemPedido1 = new ItemPedido(pedido1, produto1, 0.00, 1, 2000.00);
-        ItemPedido itemPedido2 = new ItemPedido(pedido1, produto3, 0.00, 2, 80.00);
-        ItemPedido itemPedido3 = new ItemPedido(pedido2, produto2, 100.00, 1, 800.00);
+        ItemPedido itemPedido1 = new ItemPedido(pedido1, product1, 0.00, 1, 2000.00);
+        ItemPedido itemPedido2 = new ItemPedido(pedido1, product3, 0.00, 2, 80.00);
+        ItemPedido itemPedido3 = new ItemPedido(pedido2, product2, 100.00, 1, 800.00);
 
         pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
         pedido2.getItens().addAll(Collections.singletonList(itemPedido3));
 
-        produto1.getItens().addAll(Collections.singletonList(itemPedido1));
-        produto2.getItens().addAll(Collections.singletonList(itemPedido3));
-        produto3.getItens().addAll(Collections.singletonList(itemPedido2));
+        product1.getItens().addAll(Collections.singletonList(itemPedido1));
+        product2.getItens().addAll(Collections.singletonList(itemPedido3));
+        product3.getItens().addAll(Collections.singletonList(itemPedido2));
 
         orderItemRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 
