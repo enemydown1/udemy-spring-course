@@ -1,6 +1,6 @@
 package com.udemy.spring.course.resources;
 
-import com.udemy.spring.course.domain.Cliente;
+import com.udemy.spring.course.domain.Customer;
 import com.udemy.spring.course.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class CustomerResource {
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id){
 
-        Cliente obj = service.buscar(id);
+        Customer obj = service.buscar(id);
 
         return ResponseEntity.ok().body(obj);
     }

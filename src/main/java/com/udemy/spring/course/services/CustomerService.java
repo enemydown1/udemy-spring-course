@@ -1,6 +1,6 @@
 package com.udemy.spring.course.services;
 
-import com.udemy.spring.course.domain.Cliente;
+import com.udemy.spring.course.domain.Customer;
 import com.udemy.spring.course.repositories.ResourceRepository;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,11 @@ public class CustomerService {
     @Autowired
     private ResourceRepository repository;
 
-    public Cliente buscar(Integer id){
-        Optional<Cliente> obj = repository.findById(id);
+    public Customer buscar(Integer id){
+        Optional<Customer> obj = repository.findById(id);
 
         return obj.orElseThrow(() -> new ObjectNotFoundException((
-                "Objeto não encontrado! Id: " + id + " Tipo: " + Cliente.class.getName()
+                "Objeto não encontrado! Id: " + id + " Tipo: " + Customer.class.getName()
                 )));
     }
 

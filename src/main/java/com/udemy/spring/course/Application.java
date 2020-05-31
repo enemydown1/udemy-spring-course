@@ -79,21 +79,21 @@ public class Application implements CommandLineRunner {
         stateRepository.saveAll(Arrays.asList(state1, state2));
         cityRepository.saveAll(Arrays.asList(city1, city2, city3));
 
-        Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "12629141675", CustomerType.PHYSICAL_PERSON);
-        cliente1.getTelefones().addAll(Arrays.asList("38148199", "998068391"));
+        Customer customer1 = new Customer(null, "Maria Silva", "maria@gmail.com", "12629141675", CustomerType.PHYSICAL_PERSON);
+        customer1.getPhones().addAll(Arrays.asList("38148199", "998068391"));
 
-        Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", cliente1, city1);
-        Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", cliente1, city2);
+        Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", customer1, city1);
+        Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", customer1, city2);
 
-        cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
+        customer1.getAddresses().addAll(Arrays.asList(endereco1, endereco2));
 
-        resourceRepository.saveAll(Collections.singletonList(cliente1));
+        resourceRepository.saveAll(Collections.singletonList(customer1));
         addressRepository.saveAll(Arrays.asList(endereco1, endereco2));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), cliente1, endereco1);
-        Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), cliente1, endereco2);
+        Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), customer1, endereco1);
+        Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), customer1, endereco2);
 
         Pagamento pagamento1 = new PagamentoComCartao(null, PaymentState.SETTLED, pedido1, 6);
         pedido1.setPagamento(pagamento1);
@@ -101,7 +101,7 @@ public class Application implements CommandLineRunner {
         Pagamento pagamento2 = new PagamentoComBoleto(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
         pedido2.setPagamento(pagamento2);
 
-        cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
+        customer1.getOrders().addAll(Arrays.asList(pedido1, pedido2));
 
         orderRepository.saveAll(Arrays.asList(pedido1, pedido2));
         paymentRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
