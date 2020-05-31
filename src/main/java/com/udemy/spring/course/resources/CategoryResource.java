@@ -1,6 +1,6 @@
 package com.udemy.spring.course.resources;
 
-import com.udemy.spring.course.domain.Categoria;
+import com.udemy.spring.course.domain.Category;
 import com.udemy.spring.course.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +19,13 @@ public class CategoryResource {
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id){
 
-        Categoria obj = service.buscar(id);
+        Category obj = service.buscar(id);
 
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method=RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Categoria obj){
+    public ResponseEntity<Void> insert(@RequestBody Category obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

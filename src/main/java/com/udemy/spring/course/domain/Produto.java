@@ -21,7 +21,7 @@ public class Produto {
             joinColumns = @JoinColumn(name="produto_id"),
             inverseJoinColumns = @JoinColumn(name="categoria_id")
     )
-    private List<Categoria> categorias = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
@@ -71,12 +71,12 @@ public class Produto {
         this.preco = preco;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public Set<ItemPedido> getItens() {

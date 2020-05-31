@@ -49,21 +49,21 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Categoria categoria1 = new Categoria(null, "Informática");
-        Categoria categoria2 = new Categoria(null, "Escritório");
+        Category category1 = new Category(null, "Informática");
+        Category category2 = new Category(null, "Escritório");
 
         Produto produto1 = new Produto(null, "Computador", 2000.00);
         Produto produto2 = new Produto(null, "Impressora", 800.00);
         Produto produto3 = new Produto(null, "Mouse", 80.00);
 
-        categoria1.getProdutos().addAll(Arrays.asList(produto1,produto2,produto3));
-        categoria2.getProdutos().addAll(Collections.singletonList(produto2));
+        category1.getProducts().addAll(Arrays.asList(produto1,produto2,produto3));
+        category2.getProducts().addAll(Collections.singletonList(produto2));
 
-        produto1.getCategorias().addAll(Collections.singletonList(categoria1));
-        produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
-        produto3.getCategorias().addAll(Collections.singletonList(categoria1));
+        produto1.getCategories().addAll(Collections.singletonList(category1));
+        produto2.getCategories().addAll(Arrays.asList(category1, category2));
+        produto3.getCategories().addAll(Collections.singletonList(category1));
 
-        categoryRepository.saveAll(Arrays.asList(categoria1, categoria2));
+        categoryRepository.saveAll(Arrays.asList(category1, category2));
         productRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 
         Estado estado1 = new Estado(null, "Minas Gerais");

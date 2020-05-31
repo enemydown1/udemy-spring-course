@@ -1,6 +1,6 @@
 package com.udemy.spring.course.services;
 
-import com.udemy.spring.course.domain.Categoria;
+import com.udemy.spring.course.domain.Category;
 import com.udemy.spring.course.repositories.CategoryRepository;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +14,15 @@ public class CategoryService {
     @Autowired
     private CategoryRepository repository;
 
-    public Categoria buscar(Integer id){
-        Optional<Categoria> obj = repository.findById(id);
+    public Category buscar(Integer id){
+        Optional<Category> obj = repository.findById(id);
 
         return obj.orElseThrow(() -> new ObjectNotFoundException((
-                "Objeto não encontrado! Id: " + id + " Tipo: " + Categoria.class.getName()
+                "Objeto não encontrado! Id: " + id + " Tipo: " + Category.class.getName()
                 )));
     }
 
-    public Categoria insert(Categoria obj){
+    public Category insert(Category obj){
         obj.setId(null);
         return repository.save(obj);
     }
