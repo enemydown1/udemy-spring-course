@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value="/categories")
 public class CategoryResource {
 
     @Autowired
@@ -19,7 +19,7 @@ public class CategoryResource {
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id){
 
-        Category obj = service.buscar(id);
+        Category obj = service.find(id);
 
         return ResponseEntity.ok().body(obj);
     }

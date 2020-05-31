@@ -18,17 +18,17 @@ public abstract class Payment implements Serializable {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name="request_id")
     @MapsId
-    private Pedido order;
+    private Request request;
 
     public Payment(){
     }
 
-    public Payment(Integer id, PaymentState state, Pedido order) {
+    public Payment(Integer id, PaymentState state, Request request) {
         this.id = id;
         this.state = state.getCode();
-        this.order = order;
+        this.request = request;
     }
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public abstract class Payment implements Serializable {
         this.state = state.getCode();
     }
 
-    public Pedido getOrder() {
-        return order;
+    public Request getRequest() {
+        return request;
     }
 
-    public void setOrder(Pedido order) {
-        this.order = order;
+    public void setRequest(Request request) {
+        this.request = request;
     }
 }

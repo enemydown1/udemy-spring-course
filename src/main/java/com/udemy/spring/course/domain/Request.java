@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Pedido implements Serializable {
+public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -18,9 +18,9 @@ public class Pedido implements Serializable {
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date instante;
+    private Date createdAt;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy= "order")
+    @OneToOne(cascade=CascadeType.ALL, mappedBy= "request")
     private Payment payment;
 
     @ManyToOne
@@ -31,16 +31,16 @@ public class Pedido implements Serializable {
     @JoinColumn(name="delivery_address_id")
     private Address deliveryAddress;
 
-    @OneToMany(mappedBy= "id.order")
-    private Set<OrderItem> itens = new HashSet<>();
+    @OneToMany(mappedBy= "id.request")
+    private Set<RequestItem> itens = new HashSet<>();
 
-    public Pedido(){
+    public Request(){
 
     }
 
-    public Pedido(Integer id, Date instante, Customer customer, Address deliveryAddress) {
+    public Request(Integer id, Date createdAt, Customer customer, Address deliveryAddress) {
         this.id = id;
-        this.instante = instante;
+        this.createdAt = createdAt;
         this.customer = customer;
         this.deliveryAddress = deliveryAddress;
     }
@@ -49,8 +49,8 @@ public class Pedido implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id);
+        Request request = (Request) o;
+        return Objects.equals(id, request.id);
     }
 
     @Override
@@ -66,12 +66,12 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public Date getInstante() {
-        return instante;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setInstante(Date instante) {
-        this.instante = instante;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Payment getPayment() {
@@ -98,11 +98,11 @@ public class Pedido implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public Set<OrderItem> getItens() {
+    public Set<RequestItem> getItens() {
         return itens;
     }
 
-    public void setItens(Set<OrderItem> itens) {
+    public void setItens(Set<RequestItem> itens) {
         this.itens = itens;
     }
 }

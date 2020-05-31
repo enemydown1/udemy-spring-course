@@ -1,7 +1,7 @@
 package com.udemy.spring.course.services;
 
-import com.udemy.spring.course.domain.Pedido;
-import com.udemy.spring.course.repositories.OrderRepository;
+import com.udemy.spring.course.domain.Request;
+import com.udemy.spring.course.repositories.RequestRepository;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class OrderService {
+public class RequestService {
 
     @Autowired
-    private OrderRepository repository;
+    private RequestRepository repository;
 
-    public Pedido buscar(Integer id){
-        Optional<Pedido> obj = repository.findById(id);
+    public Request find(Integer id){
+        Optional<Request> obj = repository.findById(id);
 
         return obj.orElseThrow(() -> new ObjectNotFoundException((
-                "Objeto não encontrado! Id: " + id + " Tipo: " + Pedido.class.getName()
+                "Object not found! Id: " + id + " Type: " + Request.class.getName()
                 )));
     }
 

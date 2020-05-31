@@ -28,7 +28,7 @@ public class Customer implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy="customer")
-    private List<Pedido> orders = new ArrayList<>();
+    private List<Request> requests = new ArrayList<>();
 
     public Customer(){
     }
@@ -97,12 +97,12 @@ public class Customer implements Serializable {
         this.phones = phones;
     }
 
-    public List<Pedido> getOrders() {
-        return orders;
+    public List<Request> getRequests() {
+        return requests;
     }
 
-    public void setOrders(List<Pedido> orders) {
-        this.orders = orders;
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 
 

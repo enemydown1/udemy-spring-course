@@ -8,26 +8,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class OrderItem implements Serializable {
+public class RequestItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonIgnore
     @EmbeddedId
-    private OrderItemPK id = new OrderItemPK();
+    private RequestItemPK id = new RequestItemPK();
 
     private Double discount;
     private Integer quantity;
     private Double price;
 
-    public OrderItem(){
+    public RequestItem(){
 
     }
 
-    public OrderItemPK getId() {
+    public RequestItemPK getId() {
         return id;
     }
 
-    public void setId(OrderItemPK id) {
+    public void setId(RequestItemPK id) {
         this.id = id;
     }
 
@@ -59,7 +59,7 @@ public class OrderItem implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderItem that = (OrderItem) o;
+        RequestItem that = (RequestItem) o;
         return Objects.equals(id, that.id);
     }
 
@@ -68,8 +68,8 @@ public class OrderItem implements Serializable {
         return Objects.hash(id);
     }
 
-    public OrderItem(Pedido order, Product product, Double discount, Integer quantity, Double price) {
-        id.setOrder(order);
+    public RequestItem(Request request, Product product, Double discount, Integer quantity, Double price) {
+        id.setRequest(request);
         id.setProduct(product);
         this.discount = discount;
         this.quantity = quantity;
@@ -77,8 +77,8 @@ public class OrderItem implements Serializable {
     }
 
     @JsonIgnore
-    public Pedido getOrder(){
-        return id.getOrder();
+    public Request getRequest(){
+        return id.getRequest();
     }
 
     public Product getProduct(){
