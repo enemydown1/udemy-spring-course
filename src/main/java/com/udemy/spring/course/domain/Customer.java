@@ -20,7 +20,7 @@ public class Customer implements Serializable {
     private Integer type;
 
     @OneToMany(mappedBy="customer")
-    private List<Endereco> addresses = new ArrayList<>();
+    private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name="PHONE")
@@ -81,11 +81,11 @@ public class Customer implements Serializable {
         this.type = type.getCode();
     }
 
-    public List<Endereco> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<Endereco> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 

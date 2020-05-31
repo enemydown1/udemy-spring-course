@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-public class BilletPayment extends Pagamento{
+public class BilletPayment extends Payment {
     private static final long serialVersionUID = 1L;
 
     @JsonFormat(pattern = "dd/MM/yyyy")

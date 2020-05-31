@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pagamento implements Serializable {
+public abstract class Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -22,11 +22,11 @@ public abstract class Pagamento implements Serializable {
     @MapsId
     private Pedido pedido;
 
-    public Pagamento(){
+    public Payment(){
 
     }
 
-    public Pagamento(Integer id, PaymentState estado, Pedido pedido) {
+    public Payment(Integer id, PaymentState estado, Pedido pedido) {
         this.id = id;
         this.estado = estado.getCode();
         this.pedido = pedido;
@@ -40,8 +40,8 @@ public abstract class Pagamento implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pagamento pagamento = (Pagamento) o;
-        return Objects.equals(id, pagamento.id);
+        Payment payment = (Payment) o;
+        return Objects.equals(id, payment.id);
     }
 
     @Override

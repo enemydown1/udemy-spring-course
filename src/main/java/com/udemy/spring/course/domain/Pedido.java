@@ -21,7 +21,7 @@ public class Pedido implements Serializable {
     private Date instante;
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
-    private Pagamento pagamento;
+    private Payment payment;
 
     @ManyToOne
     @JoinColumn(name="cliente_id")
@@ -29,7 +29,7 @@ public class Pedido implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="endereco_de_entrega_id")
-    private Endereco enderecoDeEntrega;
+    private Address addressDeEntrega;
 
     @OneToMany(mappedBy="id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
@@ -38,11 +38,11 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Integer id, Date instante, Customer customer, Endereco enderecoDeEntrega) {
+    public Pedido(Integer id, Date instante, Customer customer, Address addressDeEntrega) {
         this.id = id;
         this.instante = instante;
         this.customer = customer;
-        this.enderecoDeEntrega = enderecoDeEntrega;
+        this.addressDeEntrega = addressDeEntrega;
     }
 
     @Override
@@ -74,12 +74,12 @@ public class Pedido implements Serializable {
         this.instante = instante;
     }
 
-    public Pagamento getPagamento() {
-        return pagamento;
+    public Payment getPayment() {
+        return payment;
     }
 
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public Customer getCustomer() {
@@ -90,12 +90,12 @@ public class Pedido implements Serializable {
         this.customer = customer;
     }
 
-    public Endereco getEnderecoDeEntrega() {
-        return enderecoDeEntrega;
+    public Address getAddressDeEntrega() {
+        return addressDeEntrega;
     }
 
-    public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
-        this.enderecoDeEntrega = enderecoDeEntrega;
+    public void setAddressDeEntrega(Address addressDeEntrega) {
+        this.addressDeEntrega = addressDeEntrega;
     }
 
     public Set<ItemPedido> getItens() {

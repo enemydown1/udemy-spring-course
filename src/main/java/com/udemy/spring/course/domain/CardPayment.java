@@ -5,7 +5,7 @@ import com.udemy.spring.course.domain.enums.PaymentState;
 import javax.persistence.Entity;
 
 @Entity
-public class CardPayment extends Pagamento{
+public class CardPayment extends Payment {
     private static final long serialVersionUID = 1L;
 
     private Integer installmentsNumber;

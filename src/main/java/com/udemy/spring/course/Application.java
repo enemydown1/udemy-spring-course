@@ -82,29 +82,29 @@ public class Application implements CommandLineRunner {
         Customer customer1 = new Customer(null, "Maria Silva", "maria@gmail.com", "12629141675", CustomerType.PHYSICAL_PERSON);
         customer1.getPhones().addAll(Arrays.asList("38148199", "998068391"));
 
-        Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", customer1, city1);
-        Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", customer1, city2);
+        Address address1 = new Address(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", customer1, city1);
+        Address address2 = new Address(null, "Avenida Matos", "105", "Apto 500", "Centro", "38408135", customer1, city2);
 
-        customer1.getAddresses().addAll(Arrays.asList(endereco1, endereco2));
+        customer1.getAddresses().addAll(Arrays.asList(address1, address2));
 
         resourceRepository.saveAll(Collections.singletonList(customer1));
-        addressRepository.saveAll(Arrays.asList(endereco1, endereco2));
+        addressRepository.saveAll(Arrays.asList(address1, address2));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), customer1, endereco1);
-        Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), customer1, endereco2);
+        Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), customer1, address1);
+        Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), customer1, address2);
 
-        Pagamento pagamento1 = new CardPayment(null, PaymentState.SETTLED, pedido1, 6);
-        pedido1.setPagamento(pagamento1);
+        Payment payment1 = new CardPayment(null, PaymentState.SETTLED, pedido1, 6);
+        pedido1.setPayment(payment1);
 
-        Pagamento pagamento2 = new BilletPayment(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
-        pedido2.setPagamento(pagamento2);
+        Payment payment2 = new BilletPayment(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
+        pedido2.setPayment(payment2);
 
         customer1.getOrders().addAll(Arrays.asList(pedido1, pedido2));
 
         orderRepository.saveAll(Arrays.asList(pedido1, pedido2));
-        paymentRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
+        paymentRepository.saveAll(Arrays.asList(payment1, payment2));
 
         ItemPedido itemPedido1 = new ItemPedido(pedido1, product1, 0.00, 1, 2000.00);
         ItemPedido itemPedido2 = new ItemPedido(pedido1, product3, 0.00, 2, 80.00);
