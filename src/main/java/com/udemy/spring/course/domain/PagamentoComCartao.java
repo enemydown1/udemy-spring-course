@@ -1,6 +1,6 @@
 package com.udemy.spring.course.domain;
 
-import com.udemy.spring.course.domain.enums.EstadoPagamento;
+import com.udemy.spring.course.domain.enums.PaymentState;
 
 import javax.persistence.Entity;
 
@@ -14,7 +14,7 @@ public class PagamentoComCartao extends Pagamento{
 
     }
 
-    public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido, Integer numeroDeParcelas) {
+    public PagamentoComCartao(Integer id, PaymentState estado, Pedido pedido, Integer numeroDeParcelas) {
         super(id, estado, pedido);
         this.numeroDeParcelas = numeroDeParcelas;
     }

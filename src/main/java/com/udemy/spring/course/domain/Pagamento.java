@@ -1,7 +1,7 @@
 package com.udemy.spring.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.udemy.spring.course.domain.enums.EstadoPagamento;
+import com.udemy.spring.course.domain.enums.PaymentState;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,9 +26,9 @@ public abstract class Pagamento implements Serializable {
 
     }
 
-    public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
+    public Pagamento(Integer id, PaymentState estado, Pedido pedido) {
         this.id = id;
-        this.estado = estado.getCod();
+        this.estado = estado.getCode();
         this.pedido = pedido;
     }
 
@@ -53,12 +53,12 @@ public abstract class Pagamento implements Serializable {
         this.id = id;
     }
 
-    public EstadoPagamento getEstado() {
-        return EstadoPagamento.toEnum(estado);
+    public PaymentState getEstado() {
+        return PaymentState.toEnum(estado);
     }
 
-    public void setEstado(EstadoPagamento estado) {
-        this.estado = estado.getCod();
+    public void setEstado(PaymentState estado) {
+        this.estado = estado.getCode();
     }
 
     public Pedido getPedido() {

@@ -1,8 +1,8 @@
 package com.udemy.spring.course;
 
 import com.udemy.spring.course.domain.*;
-import com.udemy.spring.course.domain.enums.EstadoPagamento;
-import com.udemy.spring.course.domain.enums.TipoCliente;
+import com.udemy.spring.course.domain.enums.PaymentState;
+import com.udemy.spring.course.domain.enums.CustomerType;
 import com.udemy.spring.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -79,7 +79,7 @@ public class Application implements CommandLineRunner {
         stateRepository.saveAll(Arrays.asList(estado1, estado2));
         cityRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 
-        Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "12629141675", TipoCliente.PESSOA_FISICA);
+        Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "12629141675", CustomerType.PHYSICAL_PERSON);
         cliente1.getTelefones().addAll(Arrays.asList("38148199", "998068391"));
 
         Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38408136", cliente1, cidade1);
@@ -95,10 +95,10 @@ public class Application implements CommandLineRunner {
         Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), cliente1, endereco1);
         Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/10/2019 11:27"), cliente1, endereco2);
 
-        Pagamento pagamento1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, pedido1, 6);
+        Pagamento pagamento1 = new PagamentoComCartao(null, PaymentState.SETTLED, pedido1, 6);
         pedido1.setPagamento(pagamento1);
 
-        Pagamento pagamento2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
+        Pagamento pagamento2 = new PagamentoComBoleto(null, PaymentState.PENDING, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
         pedido2.setPagamento(pagamento2);
 
         cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));

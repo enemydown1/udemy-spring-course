@@ -1,7 +1,7 @@
 package com.udemy.spring.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.udemy.spring.course.domain.enums.TipoCliente;
+import com.udemy.spring.course.domain.enums.CustomerType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,12 +33,12 @@ public class Cliente implements Serializable {
     public Cliente(){
     }
 
-    public Cliente(Integer id, String nome, String email, String cpfOuCpnj, TipoCliente tipo) {
+    public Cliente(Integer id, String nome, String email, String cpfOuCpnj, CustomerType tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCpnj = cpfOuCpnj;
-        this.tipo = tipo.getCod();
+        this.tipo = tipo.getCode();
     }
 
     public Integer getId() {
@@ -73,12 +73,12 @@ public class Cliente implements Serializable {
         this.cpfOuCpnj = cpfOuCpnj;
     }
 
-    public TipoCliente getTipo() {
-        return TipoCliente.toEnum(tipo);
+    public CustomerType getTipo() {
+        return CustomerType.toEnum(tipo);
     }
 
-    public void setTipo(TipoCliente tipo) {
-        this.tipo = tipo.getCod();
+    public void setTipo(CustomerType tipo) {
+        this.tipo = tipo.getCode();
     }
 
     public List<Endereco> getEnderecos() {

@@ -1,7 +1,7 @@
 package com.udemy.spring.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.udemy.spring.course.domain.enums.EstadoPagamento;
+import com.udemy.spring.course.domain.enums.PaymentState;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class PagamentoComBoleto extends Pagamento{
 
     }
 
-    public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+    public PagamentoComBoleto(Integer id, PaymentState estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
         super(id, estado, pedido);
         this.dataVencimento = dataVencimento;
         this.dataPagamento = dataPagamento;
