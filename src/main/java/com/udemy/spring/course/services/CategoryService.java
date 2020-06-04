@@ -2,6 +2,7 @@ package com.udemy.spring.course.services;
 
 import com.udemy.spring.course.domain.Category;
 import com.udemy.spring.course.domain.Request;
+import com.udemy.spring.course.dto.CategoryDTO;
 import com.udemy.spring.course.repositories.CategoryRepository;
 import com.udemy.spring.course.services.exception.DataIntegrityException;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
@@ -55,5 +56,9 @@ public class CategoryService {
         } catch(DataIntegrityViolationException exception){
             throw new DataIntegrityException("Delete is not possible when categories has products associated");
         }
+    }
+
+    public Category fromDTO(CategoryDTO objDto){
+        return new Category(objDto.getId(), objDto.getName());
     }
 }

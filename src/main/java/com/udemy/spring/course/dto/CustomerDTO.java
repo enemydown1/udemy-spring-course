@@ -1,25 +1,32 @@
 package com.udemy.spring.course.dto;
 
-import com.udemy.spring.course.domain.Category;
+import com.udemy.spring.course.domain.Customer;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-public class CategoryDTO implements Serializable {
+public class CustomerDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     @NotEmpty(message="Cannot be null")
-    @Length(min=5, max=80,message="Size must be between five and eighty")
+    @Length(min=5, max=120, message="Must be between 5 and 120 characters")
     private String name;
 
-    public CategoryDTO(){
+    @NotEmpty(message="Cannot be null")
+    @Email(message="Email not valid")
+    private String email;
+
+    public CustomerDTO(){
     }
 
-    public CategoryDTO(Category obj){
+    public CustomerDTO(Customer obj){
         id = obj.getId();
         name = obj.getName();
+        email = obj.getEmail();
     }
 
     public Integer getId() {
@@ -36,5 +43,13 @@ public class CategoryDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
