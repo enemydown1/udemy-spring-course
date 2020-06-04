@@ -1,6 +1,7 @@
 package com.udemy.spring.course.services;
 
 import com.udemy.spring.course.domain.Category;
+import com.udemy.spring.course.domain.Customer;
 import com.udemy.spring.course.domain.Request;
 import com.udemy.spring.course.dto.CategoryDTO;
 import com.udemy.spring.course.repositories.CategoryRepository;
@@ -45,8 +46,13 @@ public class CategoryService {
     }
 
     public Category update(Category obj) {
-        find(obj.getId());
-        return repository.save(obj);
+        Category newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return repository.save(newObj);
+    }
+
+    private void updateData(Category newObj, Category obj){
+        newObj.setName(obj.getName());
     }
 
     public void delete(Integer id) {
