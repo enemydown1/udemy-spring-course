@@ -19,7 +19,8 @@ public class Customer implements Serializable {
     private String personIdentity;
     private Integer type;
 
-    @OneToMany(mappedBy="customer")
+
+    @OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection

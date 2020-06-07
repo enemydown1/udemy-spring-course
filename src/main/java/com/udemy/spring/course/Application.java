@@ -29,7 +29,7 @@ public class Application implements CommandLineRunner {
     private CityRepository cityRepository;
 
     @Autowired
-    private ResourceRepository resourceRepository;
+    private CustomerRepository customerRepository;
 
     @Autowired
     private AddressRepository addressRepository;
@@ -87,7 +87,7 @@ public class Application implements CommandLineRunner {
 
         customer1.getAddresses().addAll(Arrays.asList(address1, address2));
 
-        resourceRepository.saveAll(Collections.singletonList(customer1));
+        customerRepository.saveAll(Collections.singletonList(customer1));
         addressRepository.saveAll(Arrays.asList(address1, address2));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
