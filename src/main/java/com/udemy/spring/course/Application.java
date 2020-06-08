@@ -51,20 +51,29 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Category category1 = new Category(null, "Informática");
         Category category2 = new Category(null, "Escritório");
+        Category category3 = new Category(null, "Mesa e banho");
 
         Product product1 = new Product(null, "Computador", 2000.00);
         Product product2 = new Product(null, "Impressora", 800.00);
         Product product3 = new Product(null, "Mouse", 80.00);
+        Product product4 = new Product(null, "Mesa de escritório", 300.00);
+        Product product5 = new Product(null, "Toalha", 50.00);
+        Product product6 = new Product(null, "Colcha", 200.00);
 
         category1.getProducts().addAll(Arrays.asList(product1, product2, product3));
         category2.getProducts().addAll(Collections.singletonList(product2));
+        category2.getProducts().addAll(Arrays.asList(product2, product4));
+        category3.getProducts().addAll(Arrays.asList(product5, product6));
 
         product1.getCategories().addAll(Collections.singletonList(category1));
         product2.getCategories().addAll(Arrays.asList(category1, category2));
         product3.getCategories().addAll(Collections.singletonList(category1));
+        product4.getCategories().addAll(Collections.singletonList(category3));
+        product5.getCategories().addAll(Collections.singletonList(category3));
+        product6.getCategories().addAll(Collections.singletonList(category1));
 
-        categoryRepository.saveAll(Arrays.asList(category1, category2));
-        productRepository.saveAll(Arrays.asList(product1, product2, product3));
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6));
 
         State state1 = new State(null, "Minas Gerais");
         State state2 = new State(null, "São Paulo");
