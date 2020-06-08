@@ -1,12 +1,14 @@
 package com.udemy.spring.course.dto;
 
 import com.udemy.spring.course.domain.Customer;
+import com.udemy.spring.course.services.validation.CustomerUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@CustomerUpdate
 public class CustomerDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 

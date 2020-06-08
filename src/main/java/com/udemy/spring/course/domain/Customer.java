@@ -15,10 +15,11 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @Column(unique=true)
     private String email;
     private String personIdentity;
     private Integer type;
-
 
     @OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();

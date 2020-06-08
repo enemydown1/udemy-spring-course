@@ -55,10 +55,10 @@ public class CustomerService {
         return obj;
     }
 
-    public Customer update(Customer obj) {
+    public void update(Customer obj) {
         Customer newObj = find(obj.getId());
         updateData(newObj, obj);
-        return customerRepository.save(newObj);
+        customerRepository.save(newObj);
     }
 
     private void updateData(Customer newObj, Customer obj){
