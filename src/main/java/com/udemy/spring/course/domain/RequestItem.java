@@ -23,6 +23,48 @@ public class RequestItem implements Serializable {
 
     }
 
+    public RequestItem(Request request, Product product, Double discount, Integer quantity, Double price) {
+        id.setRequest(request);
+        id.setProduct(product);
+        this.discount = discount;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public double getSubTotal(){
+        return (price - discount) * quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestItem that = (RequestItem) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @JsonIgnore
+    public Request getRequest(){
+        return id.getRequest();
+    }
+
+    public Product getProduct(){
+        return id.getProduct();
+    }
+
+    public void setRequest(Request request){
+        id.setRequest(request);
+    }
+
+    public void setProduct(Product product){
+        id.setProduct(product);
+    }
+
     public RequestItemPK getId() {
         return id;
     }
@@ -53,39 +95,5 @@ public class RequestItem implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RequestItem that = (RequestItem) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public RequestItem(Request request, Product product, Double discount, Integer quantity, Double price) {
-        id.setRequest(request);
-        id.setProduct(product);
-        this.discount = discount;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    public double getSubTotal(){
-        return (price - discount) * quantity;
-    }
-
-    @JsonIgnore
-    public Request getRequest(){
-        return id.getRequest();
-    }
-
-    public Product getProduct(){
-        return id.getProduct();
     }
 }
