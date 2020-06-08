@@ -1,0 +1,1 @@
+INSERT INTO spring_course.billet_payment (due_date, payday, request_id) VALUES ('2017-10-20 02:00:00', null, 2);
