@@ -45,6 +45,14 @@ public class Request implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
+    public double getTotalValue(){
+        double sum = 0.0;
+        for(RequestItem requestItem : itens){
+            sum += requestItem.getSubTotal();
+        }
+        return sum;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
