@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "c694130f-3606-47c0-a624-21ac63ea4e46",
+		"name": "Udemy Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Fetch Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories/29",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Categorie by Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Categorie by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Categories Paginating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories/page?linesPerPage=3&page=12&direction=DESC",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"page"
+							],
+							"query": [
+								{
+									"key": "linesPerPage",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Fetch Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Customers by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Customers Paginating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customers/page?linesPerPage=1&page=12&direction=DESC",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"page"
+							],
+							"query": [
+								{
+									"key": "linesPerPage",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer by Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Matheus José\",\n\t\"email\": \"maria@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customers/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Matheus\",\n\t\"email\": \"matheus.costa@tutantoa.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customers/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Matheus\",\n\t\"email\": \"matheus.costa@tutanota.com\",\n\t\"personIdentity\": \"12629141675\",\n\t\"type\": 1,\n\t\"publicPlace\": \"Rua Barão do Rio Branco\", \n\t\"number\": \"1420\",\n\t\"complement\": \"Casa\",\n\t\"neighborhood\": \"Centro\", \n\t\"zipCode\": \"38700170\",\n\t\"phone1\": \"998068391\",\n\t\"phone2\": \"38148199\",\n\t\"cityId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Requests",
+			"item": [
+				{
+					"name": "Fetch Requests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJleHAiOjE1OTI0NDczNjN9.wDqPqboUUrCLEGy3DNukhiL7Md_rmwEogoC6BQEtbu7OgDRlu2FbrAMvB0FzKKgjaFPl9JiomRhAUVNEpM_H2A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/requests/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requests",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"customer\": {\"id\" : 1},\n\t \"deliveryAddress\": {\"id\" : 1},\n\t \"payment\" :\n\t {\n\t\t \"installmentsNumber\" : 10,\n\t\t \"@type\": \"cardPayment\"\n\t},\n\t\"itens\" : [\n\t {\n\t\t\"quantity\" : 2,\n\t\t\"product\" : {\"id\" : 3}\n\t },\n\t {\n\t\t\"quantity\" : 1,\n\t\t\"product\" : {\"id\" : 1}\n\t }\n ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/requests",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requests"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Fetch Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/?name=Mesa&categories=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Mesa"
+								},
+								{
+									"key": "categories",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"maria@gmail.com\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
