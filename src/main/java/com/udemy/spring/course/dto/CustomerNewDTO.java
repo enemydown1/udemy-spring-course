@@ -25,6 +25,9 @@ public class CustomerNewDTO implements Serializable {
     private Integer type;
 
     @NotEmpty(message="Cannot be null")
+    private String password;
+
+    @NotEmpty(message="Cannot be null")
     private String publicPlace;
 
     @NotEmpty(message="Cannot be null")
@@ -152,8 +155,12 @@ public class CustomerNewDTO implements Serializable {
         this.cityId = cityId;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
-
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }
