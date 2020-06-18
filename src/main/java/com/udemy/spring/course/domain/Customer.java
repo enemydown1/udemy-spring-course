@@ -2,10 +2,12 @@ package com.udemy.spring.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.course.domain.enums.CustomerType;
+import com.udemy.spring.course.domain.enums.Profile;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Customer implements Serializable {
@@ -31,11 +33,16 @@ public class Customer implements Serializable {
     @CollectionTable(name="PHONE")
     private Set<String> phones = new HashSet<>();
 
+    @ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name="PROFILE")
+    private Set<Integer> profiles = new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy="customer")
     private List<Request> requests = new ArrayList<>();
 
     public Customer(){
+        addProfile(Profile.CUSTOMER);
     }
 
     public Customer(Integer id, String name, String email, String personType, CustomerType type, String password) {
@@ -45,6 +52,7 @@ public class Customer implements Serializable {
         this.personIdentity = personType;
         this.type = type==null ? null : type.getCode();
         this.password = password;
+        addProfile(Profile.CUSTOMER);
     }
 
     public Integer getId() {
@@ -117,6 +125,14 @@ public class Customer implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Profile> getProfiles(){
+        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
+    }
+
+    public void addProfile(Profile profile) {
+        profiles.add(profile.getCode());
     }
 
     @Override
