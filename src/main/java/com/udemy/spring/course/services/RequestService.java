@@ -1,17 +1,19 @@
 package com.udemy.spring.course.services;
 
-import com.udemy.spring.course.domain.BilletPayment;
-import com.udemy.spring.course.domain.Request;
-import com.udemy.spring.course.domain.RequestItem;
+import com.udemy.spring.course.domain.*;
 import com.udemy.spring.course.domain.enums.PaymentState;
-import com.udemy.spring.course.repositories.PaymentRepository;
-import com.udemy.spring.course.repositories.ProductRepository;
-import com.udemy.spring.course.repositories.RequestItemRepository;
-import com.udemy.spring.course.repositories.RequestRepository;
+import com.udemy.spring.course.domain.enums.Profile;
+import com.udemy.spring.course.repositories.*;
+import com.udemy.spring.course.security.UserSpringSecurity;
+import com.udemy.spring.course.services.exception.AuthorizationException;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.Optional;
 
@@ -32,6 +34,9 @@ public class RequestService {
 
     @Autowired
     private RequestItemRepository requestItemRepository;
+
+    @Autowired
+    private CustomerService customerService;
 
     public Request find(Integer id){
         Optional<Request> obj = repository.findById(id);
@@ -59,5 +64,15 @@ public class RequestService {
         }
         requestItemRepository.saveAll(obj.getItens());
         return obj;
+    }
+
+    public Page<Request> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        UserSpringSecurity user = UserService.authenticated();
+        if(user == null){
+            throw new AuthorizationException("Access Denied");
+        }
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        Customer customer = customerService.find(user.getId());
+        return repository.findByCustomer(customer, pageRequest);
     }
 }

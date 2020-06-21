@@ -4,10 +4,13 @@ import com.udemy.spring.course.domain.Address;
 import com.udemy.spring.course.domain.City;
 import com.udemy.spring.course.domain.Customer;
 import com.udemy.spring.course.domain.enums.CustomerType;
+import com.udemy.spring.course.domain.enums.Profile;
 import com.udemy.spring.course.dto.CustomerDTO;
 import com.udemy.spring.course.dto.CustomerNewDTO;
 import com.udemy.spring.course.repositories.AddressRepository;
 import com.udemy.spring.course.repositories.CustomerRepository;
+import com.udemy.spring.course.security.UserSpringSecurity;
+import com.udemy.spring.course.services.exception.AuthorizationException;
 import com.udemy.spring.course.services.exception.DataIntegrityException;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +38,11 @@ public class CustomerService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Customer find(Integer id){
+        UserSpringSecurity user = UserService.authenticated();
+        if(user == null || !user.hasRole(Profile.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Access denied!");
+        }
         Optional<Customer> obj = customerRepository.findById(id);
-
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 String.format("Object not found with id {%s} of type %s", id, Customer.class.getName())
         ));

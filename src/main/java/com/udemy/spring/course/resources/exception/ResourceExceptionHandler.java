@@ -1,5 +1,6 @@
 package com.udemy.spring.course.resources.exception;
 
+import com.udemy.spring.course.services.exception.AuthorizationException;
 import com.udemy.spring.course.services.exception.DataIntegrityException;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -37,5 +38,10 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<StandardError> objectNotFound(AuthorizationException exception, HttpServletRequest request){
+        StandardError error = new StandardError(HttpStatus.FORBIDDEN.value(), exception.getMessage(), Date.from(Instant.now()));
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
 
 }
