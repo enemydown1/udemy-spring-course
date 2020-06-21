@@ -1,5 +1,7 @@
 package com.udemy.spring.course.config;
 
+import com.udemy.spring.course.services.EmailService;
+import com.udemy.spring.course.services.MockEmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,5 +19,10 @@ public class DevelopmentConfig {
     @Bean
     public boolean initializeDatabase(){
         return CREATE.equals(strategy);
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new MockEmailService();
     }
 }

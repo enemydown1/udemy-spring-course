@@ -1,13 +1,13 @@
 package com.udemy.spring.course.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Entity
 public class Request implements Serializable {
@@ -79,7 +79,8 @@ public class Request implements Serializable {
     }
 
     public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        this.createdAt = new Date(simpleDateFormat.format(createdAt));
     }
 
     public Payment getPayment() {
@@ -112,5 +113,27 @@ public class Request implements Serializable {
 
     public void setItens(Set<RequestItem> itens) {
         this.itens = itens;
+    }
+
+    @Override
+    public String toString() {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Request number: ");
+        builder.append(getId());
+        builder.append(", Created at: ");
+        builder.append(simpleDateFormat.format(getCreatedAt()));
+        builder.append(", Customer: ");
+        builder.append(getCustomer().getName());
+        builder.append(", Payment situation: ");
+        builder.append(getPayment().getState().getDescription());
+        builder.append("\nDetails:\n");
+        for(RequestItem requestItem: getItens()){
+            builder.append(requestItem.toString());
+        }
+        builder.append("Total value: ");
+        builder.append(numberFormat.format(getTotalValue()));
+        return builder.toString();
     }
 }

@@ -1,9 +1,14 @@
 package com.udemy.spring.course.services;
 
-import com.udemy.spring.course.domain.*;
+import com.udemy.spring.course.domain.BilletPayment;
+import com.udemy.spring.course.domain.Customer;
+import com.udemy.spring.course.domain.Request;
+import com.udemy.spring.course.domain.RequestItem;
 import com.udemy.spring.course.domain.enums.PaymentState;
-import com.udemy.spring.course.domain.enums.Profile;
-import com.udemy.spring.course.repositories.*;
+import com.udemy.spring.course.repositories.CustomerRepository;
+import com.udemy.spring.course.repositories.PaymentRepository;
+import com.udemy.spring.course.repositories.RequestItemRepository;
+import com.udemy.spring.course.repositories.RequestRepository;
 import com.udemy.spring.course.security.UserSpringSecurity;
 import com.udemy.spring.course.services.exception.AuthorizationException;
 import com.udemy.spring.course.services.exception.ObjectNotFoundException;
@@ -13,7 +18,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.Optional;
 
@@ -38,6 +42,9 @@ public class RequestService {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private EmailService emailService;
+
     public Request find(Integer id){
         Optional<Request> obj = repository.findById(id);
 
@@ -46,24 +53,27 @@ public class RequestService {
         ));
     }
 
-    public Request insert(Request obj) {
-        obj.setId(null);
-        obj.setCreatedAt(new Date());
-        obj.getPayment().setState(PaymentState.PENDING);
-        obj.getPayment().setRequest(obj);
-        if(obj.getPayment() instanceof BilletPayment){
-            BilletPayment billetPayment = (BilletPayment) obj.getPayment();
-            billetService.setBilletPayment(billetPayment, obj.getCreatedAt());
+    public Request insert(Request request) {
+        request.setId(null);
+        request.setCreatedAt(new Date());
+        request.setCustomer(customerService.find(request.getCustomer().getId()));
+        request.getPayment().setState(PaymentState.PENDING);
+        request.getPayment().setRequest(request);
+        if(request.getPayment() instanceof BilletPayment){
+            BilletPayment billetPayment = (BilletPayment) request.getPayment();
+            billetService.setBilletPayment(billetPayment, request.getCreatedAt());
         }
-        obj = repository.save(obj);
-        paymentRepository.save(obj.getPayment());
-        for(RequestItem requestItem : obj.getItens()){
+        request = repository.save(request);
+        paymentRepository.save(request.getPayment());
+        for(RequestItem requestItem : request.getItens()){
             requestItem.setDiscount(0.0);
-            requestItem.setPrice(productService.find(requestItem.getProduct().getId()).getPrice());
-            requestItem.setRequest(obj);
+            requestItem.setProduct(productService.find(requestItem.getProduct().getId()));
+            requestItem.setPrice(requestItem.getProduct().getPrice());
+            requestItem.setRequest(request);
         }
-        requestItemRepository.saveAll(obj.getItens());
-        return obj;
+        requestItemRepository.saveAll(request.getItens());
+        emailService.sendOrderConfirmationEmail(request);
+        return request;
     }
 
     public Page<Request> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
