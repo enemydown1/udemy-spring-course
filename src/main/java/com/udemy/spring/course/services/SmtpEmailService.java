@@ -17,6 +17,7 @@ public class SmtpEmailService extends AbstractEmailService{
     public void sendEmail(SimpleMailMessage message) {
         LOGGER.info("Sending email");
         mailSender.send(message);
+        LOGGER.info(message.toString());
         LOGGER.info("Email sent");
     }
 }

@@ -1,5 +1,6 @@
 package com.udemy.spring.course.services;
 
+import com.udemy.spring.course.domain.Customer;
 import com.udemy.spring.course.domain.Request;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,6 +16,22 @@ public abstract class AbstractEmailService implements EmailService{
     public void sendOrderConfirmationEmail(Request request){
         SimpleMailMessage simpleMailMessage = prepareSimpleMailMessageFromRequest(request);
         sendEmail(simpleMailMessage);
+    }
+
+    @Override
+    public void sendNewPasswordEmail(Customer customer, String newPassword){
+        SimpleMailMessage simpleMailMessage = prepareNewPasswordEmail(customer, newPassword);
+        sendEmail(simpleMailMessage);
+    }
+
+    protected SimpleMailMessage prepareNewPasswordEmail(Customer customer, String newPassword){
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(customer.getEmail());
+        simpleMailMessage.setFrom(sender);
+        simpleMailMessage.setSubject("New Password");
+        simpleMailMessage.setSentDate(new Date(System.currentTimeMillis()));
+        simpleMailMessage.setText("New password: "+ newPassword);
+        return simpleMailMessage;
     }
 
     protected SimpleMailMessage prepareSimpleMailMessageFromRequest(Request request){
