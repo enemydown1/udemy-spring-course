@@ -14,14 +14,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/categories/29",
+							"raw": "{{host}}/categories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories",
-								"29"
+								"1"
 							]
 						}
 					},
@@ -31,10 +30,21 @@
 					"name": "Add Categories",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJleHAiOjE1OTI3NTY4MDh9.9wDXUq2exicE6xV5BCDYBwF6uFqQaad6XKIJxN3ORBV9HM3r1SU9cEFRg40hp6dzQ56w903BR2vidg7fGo2AGQ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": null\n}",
+							"raw": "{\n  \"name\": \"Teste\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,11 +52,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/categories",
+							"raw": "{{host}}/categories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories"
 							]
@@ -69,11 +78,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/categories/1",
+							"raw": "{{host}}/categories/1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories",
 								"1"
@@ -86,7 +94,18 @@
 					"name": "Delete Categorie by Id",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXRoZXVzLmNvc3RhQHR1dGFub3RhLmNvbSIsImV4cCI6MTU5MjY5NjY2OX0.UvcyZMeEf_WW4yTD_QVY8hQ7IyC5_zZtpavD0_ngvauzolca6Hgz0OpcigMkw4H8YN5eotPlENI1zX4y4xhH-A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -97,14 +116,25 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/categories/1",
+							"raw": "{{host}}/categories/",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories",
-								"1"
+								""
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "Content-Type",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -116,11 +146,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/categories",
+							"raw": "{{host}}/categories",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories"
 							]
@@ -134,11 +163,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/categories/page?linesPerPage=3&page=12&direction=DESC",
+							"raw": "{{host}}/categories/page?linesPerPage=3&page=12&direction=DESC",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"categories",
 								"page"
@@ -173,11 +201,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/customers",
+							"raw": "{{host}}/customers",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers"
 							]
@@ -189,16 +216,28 @@
 					"name": "Fetch Customers by Id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJleHAiOjE1OTI3MDM3MDF9.EdxODOBzUD1PstNvUJ7_kwLJWW_RTwZWg2zJXuM8nDAWFSXXnUpC8Qg4LLLyyVuCW2hmR9qt_BEzR9AMNHQXSg",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:8080/customers/1",
+							"raw": "{{host}}/customers/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers",
-								"1"
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -210,11 +249,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/customers/page?linesPerPage=1&page=12&direction=DESC",
+							"raw": "{{host}}/customers/page?linesPerPage=1&page=12&direction=DESC",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers",
 								"page"
@@ -252,11 +290,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/customers/2",
+							"raw": "{{host}}/customers/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers",
 								"2"
@@ -280,11 +317,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/customers/2",
+							"raw": "{{host}}/customers/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers",
 								"2"
@@ -308,11 +344,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/customers",
+							"raw": "{{host}}/customers",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"customers"
 							]
@@ -333,7 +368,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJleHAiOjE1OTI0NDczNjN9.wDqPqboUUrCLEGy3DNukhiL7Md_rmwEogoC6BQEtbu7OgDRlu2FbrAMvB0FzKKgjaFPl9JiomRhAUVNEpM_H2A",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXRoZXVzLmNvc3RhQHR1dGFub3RhLmNvbSIsImV4cCI6MTU5Mjc2MTIwNX0.Z2L--baLRKvq5RclvrBIzxsAEkU_N_hUP_g6-7nl7XuXurlLeu_FRYBge_uYj52WRPVCEAq1cpflt-MjF821CQ",
 								"type": "text"
 							},
 							{
@@ -343,14 +378,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/requests/1",
+							"raw": "{{host}}/requests",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
-								"requests",
-								"1"
+								"requests"
 							]
 						}
 					},
@@ -371,11 +404,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/requests",
+							"raw": "{{host}}/requests",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"requests"
 							]
@@ -395,11 +427,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/products/?name=Mesa&categories=1",
+							"raw": "{{host}}/products/?name=Mesa&categories=1",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"products",
 								""
@@ -431,7 +462,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"maria@gmail.com\",\n    \"password\": \"123\"\n}",
+							"raw": "{\n    \"email\": \"matheus.costa@tutanota.com\",\n    \"password\": \"kjkszpj91\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -439,13 +470,45 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/login",
+							"raw": "{{host}}/login",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJleHAiOjE1OTI3MDc2Nzd9.yd5KD3ii8QMPLzwRCOYuDWLCPHIXv8LfssUpNu0ZYVyd7XwO491QPqrsQS-qqDHbuqYMvhi1XaQ2vS-mfkMTig",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/refresh_token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"refresh_token"
 							]
 						}
 					},

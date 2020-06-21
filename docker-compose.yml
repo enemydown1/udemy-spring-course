@@ -9,8 +9,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./scripts/create-table-test-schema.sql:/docker-entrypoint-initdb.d/create-tables.sql
-      - ./scripts/spring-course-test-schema.sql:/docker-entrypoint-initdb.d/insert.sql
+      - ./scripts/development/create-table-test-schema.sql:/docker-entrypoint-initdb.d/create-tables.sql
+      - ./scripts/development/spring-course-test-schema.sql:/docker-entrypoint-initdb.d/insert.sql
     networks:
       - mysql-compose-network
 
