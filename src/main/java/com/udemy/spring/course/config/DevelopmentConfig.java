@@ -2,6 +2,7 @@ package com.udemy.spring.course.config;
 
 import com.udemy.spring.course.services.EmailService;
 import com.udemy.spring.course.services.MockEmailService;
+import com.udemy.spring.course.services.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,12 @@ public class DevelopmentConfig {
     }
 
     @Bean
-    public EmailService emailService(){
+    public EmailService mockEmailService(){
         return new MockEmailService();
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new SmtpEmailService();
     }
 }
