@@ -1,1 +1,0 @@
-INSERT INTO spring_course.customer (id, email, name, person_identity, type) VALUES (1, 'maria@gmail.com', 'Maria Silva', '12629141675', 1);

@@ -8,6 +8,9 @@ services:
       MYSQL_DATABASE: "spring_course"
     ports:
       - "3306:3306"
+    volumes:
+      - ./scripts/create-table-test-schema.sql:/docker-entrypoint-initdb.d/create-tables.sql
+      - ./scripts/spring-course-test-schema.sql:/docker-entrypoint-initdb.d/insert.sql
     networks:
       - mysql-compose-network
 
