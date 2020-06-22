@@ -5,8 +5,8 @@ import com.udemy.spring.course.security.JWTUtils;
 import com.udemy.spring.course.security.UserSpringSecurity;
 import com.udemy.spring.course.services.AuthenticationService;
 import com.udemy.spring.course.services.UserService;
+import com.udemy.spring.course.services.exception.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +29,10 @@ public class AuthenticationResource {
     @RequestMapping(value="/refresh_token", method=RequestMethod.POST)
     public ResponseEntity<Void> refreshToken(HttpServletResponse response){
         UserSpringSecurity user = UserService.authenticated();
+        if(user == null ) throw new AuthorizationException("Access denied!");
         String token = jwtUtils.generateToken(user.getUsername());
         response.addHeader("Authorization","Bearer " + token);
+        response.addHeader("access-control-expose-headers", "Authorization");
         return ResponseEntity.noContent().build();
     }
 

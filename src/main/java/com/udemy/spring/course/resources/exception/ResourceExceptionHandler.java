@@ -19,28 +19,52 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException exception, HttpServletRequest request){
-        StandardError error = new StandardError(HttpStatus.NOT_FOUND.value(), exception.getMessage(), Date.from(Instant.now()));
+        StandardError error = new StandardError(
+                System.currentTimeMillis(),
+                HttpStatus.NOT_FOUND.value(),
+                "Not found",
+                exception.getMessage(),
+                request.getRequestURI()
+        );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     @ExceptionHandler(DataIntegrityException.class)
     public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException exception, HttpServletRequest request){
-        StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), Date.from(Instant.now()));
+        StandardError error = new StandardError(
+                System.currentTimeMillis(),
+                HttpStatus.BAD_REQUEST.value(),
+                "Data integrity",
+                exception.getMessage(),
+                request.getRequestURI()
+        );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> argumentNotValid(MethodArgumentNotValidException exception, HttpServletRequest request){
-        ValidationError error = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Validation error", Date.from(Instant.now()));
+        ValidationError error = new ValidationError(
+                System.currentTimeMillis(),
+                HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                "Validation error",
+                exception.getMessage(),
+                request.getRequestURI()
+        );
         for(FieldError fieldError: exception.getBindingResult().getFieldErrors()){
             error.addError(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(error);
     }
 
     @ExceptionHandler(AuthorizationException.class)
     public ResponseEntity<StandardError> objectNotFound(AuthorizationException exception, HttpServletRequest request){
-        StandardError error = new StandardError(HttpStatus.FORBIDDEN.value(), exception.getMessage(), Date.from(Instant.now()));
+        StandardError error = new StandardError(
+                System.currentTimeMillis(),
+                HttpStatus.FORBIDDEN.value(),
+                "Access denied",
+                exception.getMessage(),
+                request.getRequestURI()
+        );
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 

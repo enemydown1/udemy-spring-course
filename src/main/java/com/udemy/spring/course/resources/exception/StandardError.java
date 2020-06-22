@@ -1,21 +1,30 @@
 package com.udemy.spring.course.resources.exception;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.util.Date;
 
 public class StandardError implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    private Long timeStamp;
     private Integer status;
+    private String error;
     private String message;
-    @JsonFormat(pattern = "MM/dd/yyyy HH:mm")
-    private Date time;
+    private String path;
 
-    public StandardError(Integer status, String message, Date time) {
+    public StandardError(Long timeStamp, Integer status, String error, String message, String path) {
+        this.timeStamp = timeStamp;
         this.status = status;
+        this.error = error;
         this.message = message;
-        this.time = time;
+        this.path = path;
+    }
+
+    public Long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public Integer getStatus() {
@@ -26,6 +35,14 @@ public class StandardError implements Serializable {
         this.status = status;
     }
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -34,11 +51,11 @@ public class StandardError implements Serializable {
         this.message = message;
     }
 
-    public Date getTime() {
-        return time;
+    public String getPath() {
+        return path;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setPath(String path) {
+        this.path = path;
     }
 }
